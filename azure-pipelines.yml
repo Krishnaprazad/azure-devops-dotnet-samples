@@ -1,4 +1,7 @@
 trigger: master
+pool:
+  vmImage: vs2017-win2016
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
