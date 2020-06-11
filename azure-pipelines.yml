@@ -1,9 +1,10 @@
-trigger: master
-pool:
-  vmImage: vs2017-win2016
+jobs:
+- job: Foo
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
+  steps:
+  - script: echo Hello!
+    condition: always() # this step will always run, even if the pipeline is canceled
+
+- job: Bar
+  dependsOn: Foo
+  condition: failed() # this job will only run if Foo fails
